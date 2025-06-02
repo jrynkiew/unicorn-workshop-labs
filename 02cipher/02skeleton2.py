@@ -53,7 +53,7 @@ uc.mem_map(HEAP, 1024 * 1024)  # 1 MB
 uc.mem_write(BINARY, binary)
 
 # Set the string and offset values in memory
-input_str = b"Hello this is NOT the secret message."
+input_str = b"E0TgnZ0 h0JT0k uaQQT0J kzQkZ5 ZkQZkyk05!"
 uc.mem_write(HEAP, input_str)  # Address where input_str is stored (binary 16K, string at 17K)
 uc.reg_write(UC_X86_REG_RDI, HEAP)  # Set the first argument (address of the string)
 
@@ -64,7 +64,7 @@ uc.reg_write(UC_X86_REG_RSP, STACK + 512)  # Set the stack if needed
 
 # Emulate code execution
 try:
-    uc.emu_start(BINARY + 0x119a, BINARY + 0x12b4)  # Address of the call
+    uc.emu_start(BINARY + 0x12b5, BINARY + 0x13cf)  # Address of the call
 
     # Read the result from memory (assuming the C program prints the result)
     result = uc.mem_read(HEAP, len(input_str)).decode("utf-8")
